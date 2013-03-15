@@ -745,7 +745,7 @@ class MessageParser(object):
 
     #Common regular expressions
     ARCH_SPLIT="(?P<arch>\w+):\s*$"
-    PACKAGE_LIST="(?P<checksum>\S+)\s+(?P<pkg_filename>[\.\w-]+.rpm)"
+    PACKAGE_LIST="(?P<checksum>\S+)\s+(?P<pkg_filename>[\.\w\+-]+.rpm)"
 
     #Things to match in mailing list messages
     ERRATA_SUBJECT="\[CentOS-announce\] (?P<errata_type>\w{4,4})-(?P<year>\d{4,4})(:|-)(?P<errata_id>\d{4,4})\s+(?P<other_info>.*)$"
@@ -947,7 +947,7 @@ class MessageMailArchive(MessageParser):
     body_start_re = re.compile("<pre>")
     body_end_re = re.compile("</pre>")
     checksum_re = re.compile("(?P<checksum>\S{64,})")
-    rpm_file_re = re.compile("(?P<pkg_filename>[\.\w-]+.rpm)")
+    rpm_file_re = re.compile("(?P<pkg_filename>[\.\w\+-]+.rpm)")
     clean_subject_re = re.compile("<[^>]*>")
     
     def __init__(self,options):
@@ -1104,7 +1104,7 @@ class SearchDir(SearchStrategy):
 
 class SearchSpacewalk(SearchStrategy):
 
-    PACKAGE_NAMEONLY="(?P<pkg_name>.*?)-\d+.([\.\w-]+.rpm)"
+    PACKAGE_NAMEONLY="(?P<pkg_name>.*?)-\d+.([\.\w\+-]+.rpm)"
 
     package_name_re=re.compile(PACKAGE_NAMEONLY)
     
