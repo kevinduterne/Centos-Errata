@@ -1094,7 +1094,6 @@ class SearchDir(SearchStrategy):
 
         #TODO: could compare checksums here
         rpm_pkg_info = pkg_info.filename
-        print "<os_arch>%s</os_arch>" % (erratum_arch)
         print "<packages>%s</packages>" % (pkg_info.filename)
         if rpm_pkg_info is None:
             print "Warning: package %s%s does not exist or cannot be read." % (package_dir,pkg_info.filename)
@@ -1433,6 +1432,7 @@ def prepare_errata(config,pkg_search,cache,msgs):
                 if msg_pkginfo.filename.endswith(".src.rpm"):
                     continue
 
+                print "<os_arch>%s</os_arch>" % (template_arch)
                 pkg_info = pkg_search.findPackage(template,template_arch,msg_pkginfo)
                 
                 if pkg_info is not None:
