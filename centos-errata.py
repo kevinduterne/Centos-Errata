@@ -1416,6 +1416,7 @@ def prepare_errata(config,pkg_search,cache,msgs):
             else:
                 update_channel = config.get_update_channel(template_arch)
                 
+            print "<%s>" % (msg.messageSubject)
             if update_channel is None:
                 print "Errata %s: No %s channel configured for architecture '%s'. Skipping this architecture " % (
                     msg.messageSubject,
