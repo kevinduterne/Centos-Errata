@@ -1416,6 +1416,7 @@ def prepare_errata(config,pkg_search,cache,msgs):
                 update_channel = config.get_update_channel(template_arch)
                 
             print "<%s>" % (msg.messageSubject)
+            print "<os_arch>%s</os_arch>" % (template_arch)
             if update_channel is None:
                 print "Errata %s: No %s channel configured for architecture '%s'. Skipping this architecture " % (
                     msg.messageSubject,
@@ -1432,7 +1433,6 @@ def prepare_errata(config,pkg_search,cache,msgs):
                 if msg_pkginfo.filename.endswith(".src.rpm"):
                     continue
 
-                print "<os_arch>%s</os_arch>" % (template_arch)
                 pkg_info = pkg_search.findPackage(template,template_arch,msg_pkginfo)
                 
                 if pkg_info is not None:
