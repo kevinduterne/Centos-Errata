@@ -1093,7 +1093,8 @@ class SearchDir(SearchStrategy):
             package_dir = self.config.get_package_dir(erratum_arch)
 
         #TODO: could compare checksums here
-        rpm_pkg_info = SearchStrategy.processRPMFile(package_dir+pkg_info.filename)
+        #rpm_pkg_info = pkg_info.filename
+        print pkg_info.filename
         if rpm_pkg_info is None:
             print "Warning: package %s%s does not exist or cannot be read." % (package_dir,pkg_info.filename)
 
